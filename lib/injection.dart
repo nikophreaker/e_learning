@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:e_learning/core/constants/app/string_constants.dart';
-import 'package:e_learning/core/init/cache/auth_cache_manager.dart';
 import 'package:e_learning/features/audiobook/bloc/audio_details/audio_details_bloc.dart';
 import 'package:e_learning/features/auth/bloc/auth_bloc.dart';
-import 'package:e_learning/features/auth/domain/services/auth_service.dart';
 import 'package:e_learning/features/courses/bloc/chapter/chapter_bloc.dart';
 import 'package:e_learning/features/courses/bloc/course/course_bloc.dart';
 import 'package:e_learning/features/courses/bloc/lesson/lesson_bloc.dart';
