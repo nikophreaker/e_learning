@@ -4,6 +4,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:e_learning/core/constants/enums/auth_enums.dart';
 import 'package:e_learning/core/utils/navigate_util.dart';
 import 'package:e_learning/features/auth/bloc/auth_bloc.dart';
+import 'package:e_learning/features/auth/ui/screens/login.dart';
 import 'package:e_learning/features/home/ui/screens/home.dart';
 import 'package:e_learning/generated/assets.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_learning/features/onboarding/ui/widgets/page_item.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 
-import '../../../auth/ui/screens/login.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key, required this.audioHandler});

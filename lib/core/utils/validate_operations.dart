@@ -1,6 +1,6 @@
+import 'package:e_learning/core/constants/app/string_constants.dart';
 import 'package:flutter/foundation.dart' show immutable;
 
-import '../constants/app/string_constants.dart';
 
 @immutable
 class ValidateOperations {

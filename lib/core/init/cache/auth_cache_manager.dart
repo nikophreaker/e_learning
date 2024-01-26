@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:e_learning/core/constants/enums/network_enums.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../constants/enums/network_enums.dart';
-import '../network/dio_manager.dart';
 import 'cache_manager.dart';
 
 @singleton
