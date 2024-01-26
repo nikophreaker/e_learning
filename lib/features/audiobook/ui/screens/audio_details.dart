@@ -14,6 +14,7 @@ import 'package:e_learning/features/audiobook/domain/repository/audio_details/so
 import 'package:e_learning/features/audiobook/ui/widgets/floating_music.dart';
 import 'package:e_learning/features/audiobook/ui/widgets/fullscreen_music.dart';
 import 'package:e_learning/features/audiobook/ui/widgets/subtitle_widget.dart';
+import 'package:e_learning/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,8 +28,9 @@ class AudioDetails extends StatefulWidget {
 }
 
 class _AudioDetailsState extends State<AudioDetails> {
-  final AudioDetailsBloc audioDetailsBloc =
-      AudioDetailsBloc(AudioDetailsRepository(DioManager.instance));
+  // final AudioDetailsBloc audioDetailsBloc =
+  //     AudioDetailsBloc(AudioDetailsRepository(DioManager.instance));
+  final AudioDetailsBloc audioDetailsBloc = getIt.get<AudioDetailsBloc>();
 
   bool showFullscreen = false;
 

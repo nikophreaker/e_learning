@@ -1,8 +1,14 @@
+import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+
 import '../../constants/enums/network_enums.dart';
 import '../network/dio_manager.dart';
 import 'cache_manager.dart';
 
+@singleton
 class AuthCacheManager {
+  final Dio dio;
+  AuthCacheManager(this.dio);
   Future<bool> isFirstEntry() async {
     return !(await CacheManager.getBool(NetworkEnums.introOff.path) ?? false);
   }
@@ -26,7 +32,7 @@ class AuthCacheManager {
   Future<void> updateToken(String? token) async {
     if (token != null) {
       await CacheManager.setString(NetworkEnums.token.path, token);
-      DioManager.instance.dio.options
+      dio.options
           .headers[(MapEntry('Authorization', 'token $token'))];
 
       /// Actually, we will not need it for this application.
@@ -34,7 +40,7 @@ class AuthCacheManager {
     } else {
       if (await CacheManager.containsKey(NetworkEnums.token.path)) {
         await CacheManager.remove(NetworkEnums.token.path);
-        DioManager.instance.dio.options.headers.clear();
+        dio.options.headers.clear();
       }
     }
   }
@@ -43,7 +49,7 @@ class AuthCacheManager {
     if (await CacheManager.containsKey(NetworkEnums.token.path)) {
       final token = await CacheManager.getString(NetworkEnums.token.path);
       if (token != null) {
-        DioManager.instance.dio.options
+        dio.options
             .headers[(MapEntry('Authorization', 'token $token'))];
 
         /// Actually, we will not need it for this application.

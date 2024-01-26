@@ -6,11 +6,13 @@ import 'package:e_learning/core/constants/enums/auth_enums.dart';
 import 'package:e_learning/core/init/cache/auth_cache_manager.dart';
 import 'package:e_learning/features/auth/domain/services/interface_auth_service.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 
 part 'auth_event.dart';
 
 part 'auth_state.dart';
 
+@singleton
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final IAuthService authService;
   final AuthCacheManager authCacheManager;

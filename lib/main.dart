@@ -1,18 +1,13 @@
 import 'package:audio_service/audio_service.dart';
-import 'package:e_learning/core/init/cache/auth_cache_manager.dart';
-import 'package:e_learning/core/init/network/dio_manager.dart';
-import 'package:e_learning/features/audiobook/bloc/audio_details/audio_details_bloc.dart';
-import 'package:e_learning/features/audiobook/domain/repository/audio_details/audio_details_repo.dart';
-import 'package:e_learning/features/auth/bloc/auth_bloc.dart';
-import 'package:e_learning/features/auth/domain/services/auth_service.dart';
 import 'package:e_learning/features/onboarding/ui/screens/onboarding.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:audio_handler/audio_handler.dart';
+
+import 'injection.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await configureDependencies();
+  await configureDependencies();
   AudioHandler audioHandler = await AudioService.init(
     builder: () => MyAudioHandler(),
     config: const AudioServiceConfig(
@@ -22,24 +17,27 @@ void main() async {
         // androidStopForegroundOnPause: true,
         ),
   );
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider<AuthBloc>(
-          create: (_) => AuthBloc(
-            AuthService(DioManager.instance),
-            AuthCacheManager(),
-          ),
-        ),
-        BlocProvider<AudioDetailsBloc>(
-          create: (_) => AudioDetailsBloc(
-            AudioDetailsRepository(DioManager.instance),
-          ),
-        ),
-      ],
-      child: MyApp(audioHandler: audioHandler),
-    ),
-  );
+  runApp(GlobalBlocProviders(
+    child: MyApp(audioHandler: audioHandler),
+  ));
+  // runApp(
+  //   MultiBlocProvider(
+  //     providers: [
+  //       BlocProvider<AuthBloc>(
+  //         create: (_) => AuthBloc(
+  //           AuthService(),
+  //           AuthCacheManager(),
+  //         ),
+  //       ),
+  //       BlocProvider<AudioDetailsBloc>(
+  //         create: (_) => AudioDetailsBloc(
+  //           AudioDetailsRepository(DioManager.instance),
+  //         ),
+  //       ),
+  //     ],
+  //     child: MyApp(audioHandler: audioHandler),
+  //   ),
+  // );
 }
 
 class MyApp extends StatelessWidget {
@@ -92,7 +90,9 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      home: Onboarding(audioHandler: _audioHandler,),
+      home: Onboarding(
+        audioHandler: _audioHandler,
+      ),
     );
   }
 }
