@@ -8,13 +8,12 @@ class NavigateUtil {
     );
   }
 
-  void navigateToViewClear(BuildContext context, Widget route) {
-    Navigator.pushAndRemoveUntil(
+  void navigateToViewReplace(BuildContext context, Widget route) {
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) => route,
       ),
-      (route) => false,
     );
   }
 }

@@ -1,7 +1,5 @@
-import 'dart:developer';
 import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:e_learning/core/constants/enums/network_enums.dart';
 import 'package:e_learning/features/auth/domain/models/login_model.dart';
 import 'package:e_learning/features/auth/domain/models/user_model.dart';

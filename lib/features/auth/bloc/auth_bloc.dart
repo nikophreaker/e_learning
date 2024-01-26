@@ -40,13 +40,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(const AuthState.onLoginLoading());
         final String? response = await authService.login(
             email: event.email, password: event.password);
+        log("wwwwwwwwwwww");
         if (response != null) {
+          log("bbbbbbbbb");
           await authCacheManager.updateToken(response);
           await authCacheManager.updateLoggedIn(true);
           await authCacheManager.updateFirstEntry();
           emit(const AuthState.onLoginSuccess());
         } else {
-          add(LogoutRequested());
+          log("aaaaaaaaaa");
+          // add(LogoutRequested());
           emit(const AuthState.onLoginError(error: AuthError.wrongEmailOrPassword));
         }
       },

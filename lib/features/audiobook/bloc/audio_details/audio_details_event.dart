@@ -4,4 +4,6 @@ part of 'audio_details_bloc.dart';
 abstract class AudioDetailsEvent {}
 
 class AudioDetailsFetchEvent extends AudioDetailsEvent {
+  AudioDetailsFetchEvent({required this.id});
+  final String id;
 }

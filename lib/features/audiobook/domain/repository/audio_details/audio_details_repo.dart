@@ -7,10 +7,10 @@ class AudioDetailsRepository extends AudioDetailsProvider {
   AudioDetailsRepository(super.dioManager);
 
   @override
-  Future<AudioDetailsData?> getAudioDetails() async {
+  Future<AudioDetailsData?> getAudioDetails(String id) async {
     try {
       Response response =
-          await dioManager.dio.get("audio/?id=65a4b968918aad8a3560a95c");
+          await dioManager.dio.get("audio/?id=$id");
       return AudioDetailsData.fromJson(response.data[0]);
     } catch (error, stacktrace) {
       throw Exception("Exception occured: $error stackTrace: $stacktrace");

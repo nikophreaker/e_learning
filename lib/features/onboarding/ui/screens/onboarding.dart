@@ -32,13 +32,19 @@ class _OnboardingState extends State<Onboarding> {
 
     authStream = authBloc.stream.listen((state) {
       if (state.status == AuthStatus.authenticated) {
-        NavigateUtil().navigateToView(context, Home(audioHandler: widget.audioHandler));
+        NavigateUtil().navigateToViewReplace(context, Home(audioHandler: widget.audioHandler));
       } else if (state.status == AuthStatus.guest) {
-        NavigateUtil().navigateToView(context, Login(audioHandler: widget.audioHandler));
+        NavigateUtil().navigateToViewReplace(context, Login(audioHandler: widget.audioHandler));
       } else {
         NavigateUtil().navigateToView(context, Onboarding(audioHandler: widget.audioHandler));
       }
     });
+  }
+
+  @override
+  void dispose() {
+    authStream.cancel();
+    super.dispose();
   }
 
   final PageController controller = PageController(initialPage: 0);
@@ -187,11 +193,5 @@ class _OnboardingState extends State<Onboarding> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    authStream.cancel();
-    super.dispose();
   }
 }

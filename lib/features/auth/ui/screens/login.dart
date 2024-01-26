@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key, required this.audioHandler });
+  const Login({super.key, required this.audioHandler});
 
   final AudioHandler audioHandler;
 
@@ -27,6 +27,9 @@ class _LoginState extends State<Login> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  bool isError = false;
+  String errorMsg = "";
+
   bool? get validate => _formKey.currentState?.validate();
 
   @override
@@ -36,12 +39,20 @@ class _LoginState extends State<Login> {
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state == const AuthState.onLoginSuccess()) {
-            Navigator.of(context).push(
+            Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => Home(audioHandler: widget.audioHandler,),
+                builder: (context) => Home(
+                  audioHandler: widget.audioHandler,
+                ),
               ),
             );
-          } else if (state == const AuthState.onLoginError()) {
+          } else if (state ==
+              const AuthState.onLoginError(
+                  error: AuthError.wrongEmailOrPassword)) {
+            setState(() {
+              errorMsg = "Wrong Email or Password";
+              isError = true;
+            });
           }
         },
         child: BlocBuilder<AuthBloc, AuthState>(
@@ -93,11 +104,6 @@ class _LoginState extends State<Login> {
                                         _passwordController.text.trim(),
                                       ));
                                 }
-                                // Navigator.of(context).pushAndRemoveUntil(
-                                //     MaterialPageRoute(
-                                //       builder: (context) => AudioDetails(),
-                                //     ),
-                                //     (route) => false);
                               },
                               child: Text(
                                 "Log In",
@@ -110,12 +116,10 @@ class _LoginState extends State<Login> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 18.0),
                         child: Visibility(
-                          visible: state == const AuthState.onLoginError()
-                              ? true
-                              : false,
-                          child: const Text(
-                            "invalid login",
-                            style: TextStyle(
+                          visible: isError,
+                          child: Text(
+                            errorMsg,
+                            style: const TextStyle(
                                 color: Colors.red,
                                 fontFamily: 'OpenSans',
                                 fontSize: 12,
@@ -149,11 +153,12 @@ class _LoginState extends State<Login> {
                                 ),
                               ),
                               onPressed: () {
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                      builder: (context) => Audiobook(),
-                                    ),
-                                    (route) => false);
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        Home(audioHandler: widget.audioHandler),
+                                  ),
+                                );
                               },
                               child: Text(
                                 "Explore without Login",

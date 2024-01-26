@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:e_learning/features/audiobook/domain/models/audio_details/audio_details_data.dart';
 import 'package:e_learning/features/audiobook/domain/repository/audio_details/repositories.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
 part 'audio_details_event.dart';
@@ -19,7 +18,7 @@ class AudioDetailsBloc extends Bloc<AudioDetailsEvent, AudioDetailsState> {
       AudioDetailsFetchEvent event, Emitter<AudioDetailsState> emit) async {
     emit(AudioDetailsFetchingLoadingState());
     AudioDetailsData? audioDetails =
-    await repository.getAudioDetails();
+    await repository.getAudioDetails(event.id);
     emit(AudioDetailsSuccessFetch(audioDetails: audioDetails));
   }
 }

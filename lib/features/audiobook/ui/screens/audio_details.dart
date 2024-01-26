@@ -35,7 +35,7 @@ class _AudioDetailsState extends State<AudioDetails> {
   @override
   void initState() {
     super.initState();
-    audioDetailsBloc.add(AudioDetailsFetchEvent());
+    audioDetailsBloc.add(AudioDetailsFetchEvent(id: "65a4b968918aad8a3560a95c"));
   }
 
   @override
