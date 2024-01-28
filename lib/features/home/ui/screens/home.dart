@@ -7,6 +7,7 @@ import 'package:e_learning/core/utils/navigate_util.dart';
 import 'package:e_learning/features/audiobook/ui/screens/audio_details.dart';
 import 'package:e_learning/features/auth/bloc/auth_bloc.dart';
 import 'package:e_learning/features/auth/ui/screens/login.dart';
+import 'package:e_learning/features/courses/ui/screens/course_details.dart';
 import 'package:e_learning/features/onboarding/ui/screens/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,14 +32,11 @@ class _HomeState extends State<Home> {
     authBloc = context.read<AuthBloc>();
     authStream = authBloc.stream.listen((state) {
       if (state.status == AuthStatus.authenticated) {
-        NavigateUtil().navigateToViewReplace(
-            context, Home());
+        NavigateUtil().navigateToViewReplace(context, Home());
       } else if (state.status == AuthStatus.guest) {
-        NavigateUtil().navigateToViewReplace(
-            context, Login());
+        NavigateUtil().navigateToViewReplace(context, Login());
       } else {
-        NavigateUtil().navigateToView(
-            context, Onboarding());
+        NavigateUtil().navigateToView(context, Onboarding());
       }
     });
   }
@@ -84,7 +82,13 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => CourseDetails(),
+                      ),
+                    );
+                  },
                   style: TextButton.styleFrom(
                       backgroundColor: Colors.red.shade800,
                       shape: RoundedRectangleBorder(

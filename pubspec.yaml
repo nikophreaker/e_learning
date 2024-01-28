@@ -64,6 +64,8 @@ dependencies:
   flick_video_player: ^0.7.0
   pod_player: ^0.0.6
   miniplayer: ^1.0.1
+  video_player: ^2.8.2
+  provider: ^6.1.1
 
 
 dev_dependencies:
@@ -159,4 +161,8 @@ flutter:
     - asset/image/bookmark.png
     - asset/image/pause_15px.png
     - asset/image/play_59px.png
+    - asset/image/brain.png
+    - asset/image/language.png
+    - asset/image/lesson.png
+    - asset/image/thumbnail.png
 

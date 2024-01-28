@@ -9,10 +9,11 @@ class LessonRepository implements LessonProvider {
   LessonRepository(this.dio);
 
   @override
-  Future<LessonData?> getLessonById(String id) async {
+  Future<List<LessonData?>> getLessonById(String id) async {
     try {
-      Response response = await dio.get("lesson/?id=$id&"+r"$lookup=*");
-      return LessonData.fromJson(response.data[0]);
+      Response response = await dio.get("lesson/?id=$id&"r"$lookup=*");
+      print(response.toString());
+      return lessonDataFromJson(response);
     } catch(error, stacktrace) {
       throw Exception("Exception occured: $error stackTrace: $stacktrace");
     }

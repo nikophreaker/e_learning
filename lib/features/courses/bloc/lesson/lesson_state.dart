@@ -10,6 +10,6 @@ class LessonFetchingLoadingState extends LessonState {}
 class LessonFetchingErrorState extends LessonState {}
 
 class LessonFetchingSuccess extends LessonState {
-  final LessonData? lessonData;
+  final List<LessonData?> lessonData;
   LessonFetchingSuccess({required this.lessonData});
 }

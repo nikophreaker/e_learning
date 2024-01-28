@@ -11,7 +11,7 @@ class CourseRepository implements CourseProvider {
   @override
   Future<CourseData?> getCourseById(String id) async {
     try {
-      Response response = await dio.get("courses/?id=$id&"+r"$lookup=*");
+      Response response = await dio.get("courses/?id=$id&"r"$lookup=*");
       return CourseData.fromJson(response.data[0]);
     } catch (error, stacktrace) {
       throw Exception("Exception occured: $error stackTrace: $stacktrace");

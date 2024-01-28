@@ -21,7 +21,7 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
   FutureOr<void> lessonFetchEvent(
       LessonFetchEvent event, Emitter<LessonState> emit) async {
     emit(LessonFetchingLoadingState());
-    LessonData? lessonData = await lessonRepository.getLessonById(event.id);
+    List<LessonData?> lessonData = await lessonRepository.getLessonById(event.id);
     emit(LessonFetchingSuccess(lessonData: lessonData));
   }
 }

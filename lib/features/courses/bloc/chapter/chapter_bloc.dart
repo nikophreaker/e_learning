@@ -18,7 +18,7 @@ class ChapterBloc extends Bloc<ChapterEvent, ChapterState> {
 
   FutureOr<void> chapterFetchEvent(ChapterFetchEvent event, Emitter<ChapterState> emit) async {
     emit(ChapterFetchingLoadingState());
-    ChapterData? chapterData = await chapterRepository.getChapterById(event.id);
+    List<ChapterData?> chapterData = await chapterRepository.getChapterById(event.id);
     emit(ChapterFetchingSuccess(chapterData: chapterData));
   }
 }

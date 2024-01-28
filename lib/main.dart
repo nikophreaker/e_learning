@@ -2,13 +2,14 @@ import 'package:audio_service/audio_service.dart';
 import 'package:e_learning/features/onboarding/ui/screens/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:audio_handler/audio_handler.dart';
+import 'package:flutter/services.dart';
 
 import 'injection.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
-  runApp(GlobalBlocProviders(
+  runApp(const GlobalBlocProviders(
     child: MyApp(),
   ));
 }
@@ -19,6 +20,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

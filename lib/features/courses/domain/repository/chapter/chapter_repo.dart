@@ -9,10 +9,10 @@ class ChapterRepository implements ChapterProvider {
   ChapterRepository(this.dio);
 
   @override
-  Future<ChapterData?> getChapterById(String id) async {
+  Future<List<ChapterData?>> getChapterById(String id) async {
     try {
-      Response response = await dio.get("chapter/?id=$id&"+r"$lookup=*");
-      return ChapterData.fromJson(response.data[0]);
+      Response response = await dio.get("chapter/?id=$id&"r"$lookup=*");
+      return chapterDataFromJson(response);
     } catch (error, stacktrace) {
       throw Exception("Exception occured: $error stackTrace: $stacktrace");
     }

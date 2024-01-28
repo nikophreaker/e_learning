@@ -1,8 +1,17 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
+
 /// _id : "65a6384e918aad8a3560a98b"
 /// coursesId : [{"_id":"65a63753918aad8a3560a98a","title":"Blender: Design 3D Illustration"}]
 /// createdAt : "2024-01-16T08:03:26.272Z"
 /// lesson : [{"_id":"65a639ba918aad8a3560a98d","title":"Pengenalan Blender"},{"_id":"65a73dc6918aad8a3560a9dd","title":"Atque id eaque magni"}]
 /// title : "3D Design"
+///
+
+List<ChapterData> chapterDataFromJson(Response str) => List<ChapterData>.from(str.data.map((x) => ChapterData.fromJson(x)));
+
+String chapterDataToJson(List<ChapterData> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ChapterData {
   ChapterData({

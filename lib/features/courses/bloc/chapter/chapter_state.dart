@@ -10,6 +10,6 @@ class ChapterFetchingLoadingState extends ChapterState {}
 class ChapterFetchingErrorState extends ChapterState {}
 
 class ChapterFetchingSuccess extends ChapterState {
-  final ChapterData? chapterData;
+  final List<ChapterData?> chapterData;
   ChapterFetchingSuccess({required this.chapterData});
 }

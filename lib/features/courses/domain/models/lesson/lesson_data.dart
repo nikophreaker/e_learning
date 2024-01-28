@@ -1,8 +1,17 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
+
 /// _id : "65a639ba918aad8a3560a98d"
 /// chapterId : [{"_id":"65a6384e918aad8a3560a98b","title":"3D Design"}]
 /// createdAt : "2024-01-16T08:09:30.845Z"
 /// path : [{"fileName":"Talent Insider - Learning.webm","url":"https://api.kontenbase.com/upload/file/storage/65a0e330fac3f5febba7f7f8/Talent Insider - Learning-NGoOAHnz.webm"}]
 /// title : "Pengenalan Blender"
+///
+///
+List<LessonData> lessonDataFromJson(Response str) => List<LessonData>.from(str.data.map((x) => LessonData.fromJson(x)));
+
+String lessonDataToJson(List<LessonData> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class LessonData {
   LessonData({
