@@ -2,13 +2,13 @@ import 'package:audio_service/audio_service.dart';
 import 'package:e_learning/features/audiobook/bloc/audio_details/audio_details_bloc.dart';
 import 'package:e_learning/features/audiobook/domain/models/audio_details/audio_details_data.dart';
 import 'package:e_learning/features/audiobook/domain/models/music_player/music_player_data.dart';
+import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SongRepository {
-  SongRepository({required AudioHandler audioHandler, required this.data})
-      : _audioHandler = audioHandler;
+  SongRepository({required this.audioHandler, required this.data});
 
-  final AudioHandler _audioHandler;
+  final AudioHandler audioHandler;
 
   final AudioDetailsSuccessFetch data;
 
@@ -38,9 +38,15 @@ class SongRepository {
     }
   }
 
-  void play() => _audioHandler.play();
+  void play() => audioHandler.play();
 
-  void pause() => _audioHandler.pause();
+  void pause() => audioHandler.pause();
+
+  void prev() => audioHandler.skipToPrevious();
+
+  void next() => audioHandler.skipToNext();
+
+  void seek(Duration position) => audioHandler.seek(position);
 
   /// A stream reporting the combined state of the current media item and its
   /// current position.
@@ -49,8 +55,8 @@ class SongRepository {
       List<MediaItem>,
       MediaItem?,
       Duration,
-      MusicPlayerData>(_audioHandler.playbackState, _audioHandler.queue,
-      _audioHandler.mediaItem, AudioService.position, (
+      MusicPlayerData>(audioHandler.playbackState, audioHandler.queue,
+      audioHandler.mediaItem, AudioService.position, (
           PlaybackState playbackState,
           List<MediaItem> queue,
           MediaItem? mediaItem,
@@ -69,7 +75,15 @@ class SongRepository {
       });
 
   Future<void> setCurrentSong(AudioDetailsData song) async {
-    _audioHandler.removeQueueItemAt(0);
-    _audioHandler.addQueueItem(song.toMediaItem());
+    audioHandler.removeQueueItemAt(0);
+    audioHandler.addQueueItem(song.toMediaItem());
+  }
+
+  Future<void> setCurrentQueue(List<AudioDetailsData> song) async {
+    audioHandler.updateQueue(song.map((e) => e.toMediaItem()).toList());
+  }
+
+  Future<void> addSong(AudioDetailsData song) async {
+    audioHandler.addQueueItem(song.toMediaItem());
   }
 }

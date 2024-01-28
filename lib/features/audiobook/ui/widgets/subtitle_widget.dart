@@ -84,7 +84,7 @@ class SubtitleWidget extends StatelessWidget {
               color: Colors.white,
             ),
             child: Text(
-              "${DateFormat('MMMd', 'en_US').format(DateTime.parse(data.audioDetails!.createdAt.toString())).toString()} • ${data.audioDetails?.time} • min read • in ${data.audioDetails?.languange}",
+              "${DateFormat('MMMd', 'en_US').format(DateTime.parse(data.audioDetails!.createdAt.toString())).toString()} • ${data.audioDetails?.time} min read • in ${data.audioDetails?.languange}",
             ),
           ),
         ),

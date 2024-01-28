@@ -3,6 +3,7 @@ class Assets {
   Assets._();
 
   static const String assetImageAudio = 'asset/image/audio.png';
+  static const String assetImageBookmark = 'asset/image/bookmark.png';
   static const String assetImageBurger = 'asset/image/burger.png';
   static const String assetImageDown = 'asset/image/down.png';
   static const String assetImageLogo = 'asset/image/logo.png';
@@ -10,9 +11,9 @@ class Assets {
   static const String assetImageOnboarding1 = 'asset/image/onboarding_1.png';
   static const String assetImageOnboarding2 = 'asset/image/onboarding_2.png';
   static const String assetImageOnboarding3 = 'asset/image/onboarding_3.png';
-  static const String assetImagePause = 'asset/image/pause.png';
+  static const String assetImagePause = 'asset/image/pause_59px.png';
   static const String assetImagePerson = 'asset/image/person.png';
-  static const String assetImagePlay = 'asset/image/play.png';
+  static const String assetImagePlay = 'asset/image/play_15px.png';
   static const String assetImagePrev = 'asset/image/prev.png';
   static const String assetImageShare = 'asset/image/share.png';
   static const String assetImageTag = 'asset/image/tag.png';
@@ -26,14 +27,16 @@ class Assets {
   static const String imageBookmark = 'asset/image/bookmark.png';
   static const String imageBurger = 'asset/image/burger.png';
   static const String imageDown = 'asset/image/down.png';
+  static const String imageIcons8Pause15px = 'asset/image/pause_15px.png';
+  static const String imageIcons8PlayButtonCircled59px = 'asset/image/play_59px.png';
   static const String imageLogo = 'asset/image/logo.png';
   static const String imageNext = 'asset/image/next.png';
   static const String imageOnboarding1 = 'asset/image/onboarding_1.png';
   static const String imageOnboarding2 = 'asset/image/onboarding_2.png';
   static const String imageOnboarding3 = 'asset/image/onboarding_3.png';
-  static const String imagePause = 'asset/image/pause.png';
+  static const String imagePause = 'asset/image/pause_59px.png';
   static const String imagePerson = 'asset/image/person.png';
-  static const String imagePlay = 'asset/image/play.png';
+  static const String imagePlay = 'asset/image/play_15px.png';
   static const String imagePrev = 'asset/image/prev.png';
   static const String imageShare = 'asset/image/share.png';
   static const String imageTag = 'asset/image/tag.png';

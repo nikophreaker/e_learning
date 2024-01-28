@@ -13,6 +13,15 @@ class MusicPlayerPlay extends MusicPlayerEvent {}
 
 class MusicPlayerPause extends MusicPlayerEvent {}
 
+class MusicPlayerPrev extends MusicPlayerEvent {}
+
+class MusicPlayerNext extends MusicPlayerEvent {}
+
+class MusicPlayerSeek extends MusicPlayerEvent {
+  final Duration position;
+  const MusicPlayerSeek({required this.position});
+}
+
 class MusicPlayerSetCurrentSong extends MusicPlayerEvent {
   final AudioDetailsData song;
 
@@ -20,4 +29,18 @@ class MusicPlayerSetCurrentSong extends MusicPlayerEvent {
 
   @override
   List<Object> get props => [song];
+}
+
+class MusicPlayerSetCurrentQueue extends MusicPlayerEvent {
+  final List<AudioDetailsData> song;
+
+  const MusicPlayerSetCurrentQueue({required this.song});
+
+  @override
+  List<Object> get props => [song];
+}
+
+class MusicPlayerAddSong extends MusicPlayerEvent {
+  final AudioDetailsData song;
+  const MusicPlayerAddSong({required this.song});
 }

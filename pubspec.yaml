@@ -63,6 +63,7 @@ dependencies:
     path: packages/audio_handler
   flick_video_player: ^0.7.0
   pod_player: ^0.0.6
+  miniplayer: ^1.0.1
 
 
 dev_dependencies:
@@ -148,12 +149,14 @@ flutter:
     - asset/image/person.png
     - asset/image/tag.png
     - asset/image/share.png
-    - asset/image/play.png
+    - asset/image/play_15px.png
     - asset/image/down.png
     - asset/image/burger.png
     - asset/image/audio.png
     - asset/image/prev.png
-    - asset/image/pause.png
+    - asset/image/pause_59px.png
     - asset/image/next.png
     - asset/image/bookmark.png
+    - asset/image/pause_15px.png
+    - asset/image/play_59px.png
 

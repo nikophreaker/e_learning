@@ -14,9 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key, required this.audioHandler});
-
-  final AudioHandler audioHandler;
+  const Login({super.key});
 
   @override
   State<Login> createState() => _LoginState();
@@ -41,9 +39,7 @@ class _LoginState extends State<Login> {
           if (state == const AuthState.onLoginSuccess()) {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => Home(
-                  audioHandler: widget.audioHandler,
-                ),
+                builder: (context) => Home(),
               ),
             );
           } else if (state ==
@@ -156,7 +152,7 @@ class _LoginState extends State<Login> {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        Home(audioHandler: widget.audioHandler),
+                                        Home(),
                                   ),
                                 );
                               },

@@ -9,7 +9,6 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: IAuthService)
 class AuthService extends IAuthService {
-  // AuthService(super.dioManager);
   final Dio dio;
   AuthService(this.dio);
 
@@ -18,13 +17,6 @@ class AuthService extends IAuthService {
     required String email,
     required String password,
   }) async {
-    // var response = await dioManager.dio.post(
-    //   NetworkEnums.login.path,
-    //   data: LoginModel(
-    //     email: email,
-    //     password: password,
-    //   ).toJson(),
-    // );
     var response = await dio.post(
       NetworkEnums.login.path,
       data: LoginModel(

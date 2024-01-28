@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:audio_service/audio_service.dart';
 import 'package:e_learning/core/constants/enums/auth_enums.dart';
 import 'package:e_learning/core/utils/navigate_util.dart';
 import 'package:e_learning/features/auth/bloc/auth_bloc.dart';
@@ -14,9 +13,8 @@ import 'package:dots_indicator/dots_indicator.dart';
 
 
 class Onboarding extends StatefulWidget {
-  const Onboarding({super.key, required this.audioHandler});
+  const Onboarding({super.key});
 
-  final AudioHandler audioHandler;
   @override
   State<Onboarding> createState() => _OnboardingState();
 }
@@ -32,11 +30,11 @@ class _OnboardingState extends State<Onboarding> {
 
     authStream = authBloc.stream.listen((state) {
       if (state.status == AuthStatus.authenticated) {
-        NavigateUtil().navigateToViewReplace(context, Home(audioHandler: widget.audioHandler));
+        NavigateUtil().navigateToViewReplace(context, Home());
       } else if (state.status == AuthStatus.guest) {
-        NavigateUtil().navigateToViewReplace(context, Login(audioHandler: widget.audioHandler));
+        NavigateUtil().navigateToViewReplace(context, Login());
       } else {
-        NavigateUtil().navigateToView(context, Onboarding(audioHandler: widget.audioHandler));
+        NavigateUtil().navigateToView(context, Onboarding());
       }
     });
   }
@@ -138,7 +136,7 @@ class _OnboardingState extends State<Onboarding> {
                       onTap: () {
                         Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
-                              builder: (context) => Login(audioHandler: widget.audioHandler,),
+                              builder: (context) => Login(),
                             ),
                                 (route) => false);
                       },
@@ -157,7 +155,7 @@ class _OnboardingState extends State<Onboarding> {
                       _currentPosition == 2
                           ? Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
-                            builder: (context) => Login(audioHandler: widget.audioHandler),
+                            builder: (context) => Login(),
                           ),
                               (route) => false)
                           : controller.animateToPage(

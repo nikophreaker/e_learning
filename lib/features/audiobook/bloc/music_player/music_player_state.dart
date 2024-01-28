@@ -1,6 +1,6 @@
 part of 'music_player_bloc.dart';
 
-enum MusicPlayerStatus { initial, loaded, playing, paused }
+enum MusicPlayerStatus { initial, loaded, playing, paused, stopped }
 
 class MusicPlayerState extends Equatable {
   final MusicPlayerStatus status;

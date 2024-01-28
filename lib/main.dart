@@ -8,43 +8,13 @@ import 'injection.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
-  AudioHandler audioHandler = await AudioService.init(
-    builder: () => MyAudioHandler(),
-    config: const AudioServiceConfig(
-        // androidNotificationChannelId: 'com.mycompany.myapp.audio',
-        // androidNotificationChannelName: 'Audio Service Demo',
-        // androidNotificationOngoing: true,
-        // androidStopForegroundOnPause: true,
-        ),
-  );
   runApp(GlobalBlocProviders(
-    child: MyApp(audioHandler: audioHandler),
+    child: MyApp(),
   ));
-  // runApp(
-  //   MultiBlocProvider(
-  //     providers: [
-  //       BlocProvider<AuthBloc>(
-  //         create: (_) => AuthBloc(
-  //           AuthService(),
-  //           AuthCacheManager(),
-  //         ),
-  //       ),
-  //       BlocProvider<AudioDetailsBloc>(
-  //         create: (_) => AudioDetailsBloc(
-  //           AudioDetailsRepository(DioManager.instance),
-  //         ),
-  //       ),
-  //     ],
-  //     child: MyApp(audioHandler: audioHandler),
-  //   ),
-  // );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required AudioHandler audioHandler})
-      : _audioHandler = audioHandler;
-
-  final AudioHandler _audioHandler;
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -52,6 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.black,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         fontFamily: 'Poppins',
@@ -90,9 +61,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      home: Onboarding(
-        audioHandler: _audioHandler,
-      ),
+      home: Onboarding(),
     );
   }
 }

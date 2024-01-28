@@ -1,8 +1,11 @@
 import 'dart:async';
 
+import 'package:audio_handler/audio_handler.dart';
+import 'package:audio_service/audio_service.dart';
 import 'package:dio/dio.dart';
 import 'package:e_learning/core/constants/app/string_constants.dart';
 import 'package:e_learning/features/audiobook/bloc/audio_details/audio_details_bloc.dart';
+import 'package:e_learning/features/audiobook/domain/repository/audio_details/song_repository.dart';
 import 'package:e_learning/features/auth/bloc/auth_bloc.dart';
 import 'package:e_learning/features/courses/bloc/chapter/chapter_bloc.dart';
 import 'package:e_learning/features/courses/bloc/course/course_bloc.dart';
@@ -19,7 +22,6 @@ final getIt = GetIt.instance;
 @InjectableInit()
 FutureOr<void> configureDependencies() => getIt.init();
 
-
 @module
 abstract class RegisterModule {
   @singleton
@@ -31,6 +33,17 @@ abstract class RegisterModule {
           contentType: Headers.jsonContentType,
           responseType: ResponseType.json,
         ),
+      );
+
+  @singleton
+  Future<AudioHandler> get audioHandler async => await AudioService.init(
+        builder: () => MyAudioHandler(),
+        config: const AudioServiceConfig(
+            // androidNotificationChannelId: 'com.mycompany.myapp.audio',
+            // androidNotificationChannelName: 'Audio Service Demo',
+            // androidNotificationOngoing: true,
+            // androidStopForegroundOnPause: true,
+            ),
       );
 }
 
